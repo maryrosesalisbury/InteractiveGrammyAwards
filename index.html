@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)file:///Users/maryrosesalisbury/Downloads/mary.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+<div class="entire-container">
+<p style="text-align: center; font-size:40px; color:blue; font-family: Georgia">Grammy Awards 2016</p>
+
+<p style="text-align: center; font-size:20px; color: blue; font-family: Georgia">By: Mary Salisbury</p>
+<p style="text-align: center; font-size: 20px; color: red;">March 8, 2016</p>
+
+<p> The 58th Annual Grammy Awards were held on February 15, 2016 at the Staples Center in Los Angeles, California. Singers, actors, models, and other celebrities gathered from all over the world too see which talented artists would go home with a prestigious Grammy Award this year. According to an article on <i>Billboard.com</i>, taking the lead this year was Kendrick Lamar with 11 total nominations, as well as Taylor Swift and The Weeknd with seven nominations each. To see if one of your favorites won one of the five most coveted Grammy awards, scroll your mouse over each one of the markers! </p>
+
+<p style="text-align: center; font-size: 10px; color: gray; font-family: Georgia;">All photos courtesy of <i>Google Images</i></p>
+
+<div class="container straighten">
+    <div id="popup">
+        <div class="marker" id="RecordoftheYear"></div>
+        <div class="marker" id="AlbumoftheYear"></div>
+        <div class="marker" id="BestNewArtist"></div>
+        <div class="marker" id="BestRapAlbum"></div>
+        <div class="marker" id="SongoftheYear"></div>
+        <img src="http://i63.tinypic.com/28qtcvt.jpg">
+    </div>
+</div>
+<div class="textbox"></div>
+</div>
+
+
+<style>
+.entire-container {
+width: 60%;
+margin: auto;
+}
+.textbox {
+    display: inline-block;
+    width: 94%;
+    padding: 20px;
+    vertical-align: top;
+    background-color: #eee;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 1.5em;
+}
+.container{
+
+    position: relative;
+    display: inline-block;
+}
+.container img {    
+    width: 100%;
+}
+.marker{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: yellow;
+    border: 2px solid white;
+    border-radius: 50%;
+    transition: background-color 0.5s ease;
+    cursor: pointer;
+}
+.marker:hover {
+    background-color: red;
+}
+#RecordoftheYear {
+    top:50%;
+    left: 50%;
+}
+#AlbumoftheYear {
+    top:50%;
+    left: 30%;
+}
+#BestNewArtist {
+    top: 50%;
+    right: 28%;
+}
+#BestRapAlbum {
+	top: 50%;
+	right: 10%;
+}
+#SongoftheYear  {
+	top: 50%;
+	right: 90%;
+}
+.popuptitle {
+    color: #C72428;
+    font-family:'Roboto', Arial, sans-serif;
+    letter-spacing: 0.01em;
+    font-size:18px; 
+    font-weight:700;
+    clear:both;
+}
+#popup{
+	position:relative;
+}
+.hoverbox{
+	position:absolute;
+	background-color:#fff;
+	padding:0.5em;
+	box-shadow: .px 1px 8px rgba(0,0,0,0.4);
+}
+
+@media only screen and (max-width: 550 px) {
+.container{
+	width:100%;
+.textbox{ 
+	width: 90%;
+	
+}
+
+</style>
+
+
+<script>
+$(document).ready(function(){
+
+var data =
+[{"id":"RecordoftheYear","name":"Record of the Year","description":"Bruno Mars took home this year's Record of the Year award for his record titled, Uptown Funk."},
+{"id":"AlbumoftheYear","name":"Album of the Year","description":"Taylor Swift won this year's Album of the Year award for her hit record titled for the year she was born, 1989."},
+{"id":"BestNewArtist","name":"Best New Artist","description":"Meghan Trainor was another big winner this year, as she took home the prize of Best New Artist."},
+{"id":"BestRapAlbum","name":"Best Rap Album","description":"Kendrick Lamar was nominated a total of 11 times this year and took home Rap Album of the Year award for his album, To Pimp A Butterfly."}, 
+{"id":"SongoftheYear","name":"Song of the Year","description":"Fans loved Ed Sheeran's song, Thinking Out Loud, so much that he took home the coveted Song of the Year Grammy."}];
+
+$('.marker').click(function(e) {
+	$('.textbox').empty();
+	for (var i = 0; i < data.length; i++) {
+		if (this.id == data[i].id) {
+			$('.textbox').append('<div class="popuptitle">' + data[i].name + '</div>' + data[i].description);
+		}//if
+	}//for
+});//click marker
+
+
+var pos, thex, they;
+
+$('.marker').mouseover(function(e) {
+	
+	pos = $('#popup').offset()
+	 thex = event.pageX - pos.left + 10; 
+	 they = event.pageY - pos.top - 50;
+	 
+	 if (thex > $('#popup').width() - 150) { thex = $('#popup').width() - 150 };
+	 if (they > $('#popup').height() - 100) { they = $('#popup').height() - 100 };
+	 
+	 for (var i = 0; i < data.length; i++) {
+		 if (this.id == data[i].id) {
+			 $('#popup').append('<div class="hoverbox" style="top:'+they+'px; left:'+thex+'px;"><div class="popuptitle">'+data[i].name+'</div></div>'); 
+			 console.log(data[i].id);
+			 
+		 }//if
+	 }//for
+	
+	
+	
+});//mouseover
+
+$('.marker').mouseleave(function(){
+	$('.hoverbox').remove();
+});//mouseleave
+
+
+
+
+});//docready
+</script>
+
+
+</body></html>
